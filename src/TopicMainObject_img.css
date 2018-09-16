@@ -1,0 +1,102 @@
+.response-contents .response h2 {
+    padding: 1px 0px 2px 0px;
+    margin: 0px;
+    color: #fefefe;
+    background-color: #222;
+    font-size: 0.8em;
+    text-align: right;
+}
+.response-contents .response h2 span {
+    float: left;
+    margin: 3px 0px 0px 6px;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+.response-contents .response h2 select {
+    color: #222;
+    padding: 0px 10px 4px 10px;
+}
+.response-contents .response h2 button {
+    width: 20px;
+    height: 20px;
+    border: 0px;
+    border-radius: 1em;
+    margin: 0px 4px 0px 4px;
+    background-color: transparent;
+    text-align: center;
+    transition: 0.3s;
+}
+.response-contents .response h2 button.delete-obj-btn,
+.response-contents .response h2 button.delete-response-btn {
+    margin: 0px 10px 0px 8px;
+}
+.response-contents .response h2 button.delete-obj-btn i,
+.response-contents .response h2 button.delete-response-btn i{
+    margin: 1px 0px 0px 0px;
+}
+.response-contents .response h2 button.down-btn i {
+    margin: 1px 0px 0px 1px;
+}
+.response-contents .response h2 button:hover {
+    color: #222;
+    background-color: #fefefe;
+}
+
+.response-contents .response p {
+    width: 98%;
+    margin: auto;
+}
+.response-contents .response p span {
+    display: inline-block;
+    width: 19%;
+    margin: 8px 0px;
+    font-size: 0.9em;
+    font-weight: bold;
+}
+.response-contents .response p input[type="text"] {
+    width: 80%;
+    padding: 4px 4px 0px 6px;
+    font-size: 0.8em;
+}
+
+.response-contents .response .obj-img h2 {
+    background-color: #98c054;
+    padding-top: 6px;
+}
+
+.response-contents .response .obj-img h2 span {
+    margin: 0px 6px;
+}
+
+.response-contents .response .obj-img > p {
+    display: inline-block;
+    width: 19%;
+    margin-top: 4%;
+    margin-left: 2%;
+    float: left;
+}
+.response-contents .response .obj-img ul {
+    display: inline-block;
+    width: 79%;
+}
+.response-contents .response .obj-img ul li p {
+    font-size: 0.9em;
+    font-weight: bold;
+}
+.response-contents .response .obj-img ul li input {
+    width: 96%;
+    font-size: 0.8em;
+}
+
+@media screen and (max-width: 1550px) {    
+    /***** topic-contents *****/
+    .topic-contents {
+        width: 100%;
+    }
+    .topic-contents ul li > span {
+        width: 30%;
+    }
+    .topic-contents ul li input[type="text"] {
+        width: 65%;
+    }
+}

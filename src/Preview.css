@@ -1,0 +1,11 @@
+.preview-contents > button {
+    width: 90%;
+    padding: 10px 0px 4px 0px;
+    margin-top: 40px;
+    background-color: #6E8B3D;
+}
+.preview-contents > iframe {
+    width: 90%;
+    background-color: #fefefe;
+    border: 2px solid #6E8B3D;
+}

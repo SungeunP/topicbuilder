@@ -1,0 +1,9 @@
+/***** contents *****/
+.contents {
+    height: 100vh;
+    padding: 60px 0px 0px 170px !important;
+}
+.contents .content-row {
+    position: relative;
+    z-index: 100;
+}

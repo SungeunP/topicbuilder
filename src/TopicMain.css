@@ -1,0 +1,107 @@
+/***** topic-contents *****/
+.topic-contents {
+    width: 93%;
+    height: auto;
+    border: 2px solid #b8b8b8;
+    background-color: #fefefe;
+    padding: 10px 0px;
+}
+.topic-contents ul li {
+    padding: 4px 20px;
+    white-space: nowrap;
+}
+.topic-contents ul li > span {
+    display: inline-block;
+    width: 20%;
+    font-weight: bold;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+.topic-contents ul li input[type="text"] {
+    width: 75%;
+    padding: 4px 4px 0px 6px;
+}
+.topic-contents ul li .delete-previous-btn {
+    position: relative;
+    left: -20px;
+    color: #b8b8b8;
+    background-color: transparent;
+    border: 0px;
+}
+.topic-contents ul li .help-btn {
+    margin-left: 3px;
+    background-color: transparent;
+    border: 0px;
+}
+.topic-contents ul li.question-status {
+    position: relative;
+}
+.topic-contents ul li.question-status p {
+/*    display: none;*/
+    position: absolute;
+    max-width: 220px;
+    white-space: normal;
+    left: 140px;
+    top: 40px;
+    padding: 4px 10px;
+    color: #fefefe;
+    background-color: #222;
+    opacity: 0.9;
+    font-size: 0.9em;
+}
+
+.topic-contents > .btn-custom-black {
+    margin: 0px 0px 10px 20px;
+}
+
+/***** previous-list *****/
+.previous-list {
+    position: absolute;
+    width: 87%;
+    height: auto;
+    left: 3%;
+    background-color: #fefefe;
+    border: 2px solid #b8b8b8;
+    z-index: 100;
+}
+.previous-list h2 {
+    padding: 8px 10px 2px 10px;
+    margin: 0px;
+    color: #fefefe;
+    font-size: 1em;
+    font-weight: bold;
+    background-color: #b8b8b8;
+}
+.previous-list ul li a {
+    display: block;
+    color: #222;
+    width: 100%;
+    font-size: 0.9em;
+    transition: 0.3s;
+}
+.previous-list ul li a:hover,
+.previous-list ul li a:focus,
+.previous-list ul li a:active {
+    color: #00A2E8;
+    text-decoration: none;
+}
+
+@media screen and (max-width: 1550px) {    
+    /***** topic-contents *****/
+    .topic-contents {
+        width: 100%;
+    }
+    .topic-contents ul li > span {
+        width: 30%;
+    }
+    .topic-contents ul li input[type="text"] {
+        width: 65%;
+    }
+    
+    /***** previous-list *****/
+    .previous-list {
+        width: 92%;
+        height: auto;
+        left: 4%;
+    }
+}

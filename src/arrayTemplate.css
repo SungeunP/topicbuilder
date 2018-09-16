@@ -1,0 +1,33 @@
+.array-list .list-contents .array-config,
+.array-list .list-contents .add-array {
+    padding: 4px 8px;
+}
+.array-list .list-contents .array-config .array-config-title,
+.array-list .list-contents .add-array .array-config-title {
+    margin-top: 10px;
+    font-size: 0.9em;
+}
+.array-list .list-contents .array-config ul li .btn-line,
+.array-list .list-contents .add-array ul li .btn-line {
+    float: right;
+}
+.array-list .list-contents .array-config ul li .btn-line button,
+.array-list .list-contents .add-array ul li .btn-line button {
+    position: relative;
+    top: -4px;
+    margin-right: 4px;
+}
+.array-list .list-contents .array-config ul li input,
+.array-list .list-contents .array-config ul li textarea,
+.array-list .list-contents .add-array ul li input,
+.array-list .list-contents .add-array ul li textarea {
+    width: 98%;
+    resize: none;
+    font-size: 0.9em;
+    font-weight: normal;
+}
+.array-list .list-contents li .array-config-btn {
+    border: 0px;
+    background-color: transparent;
+    float: right;
+}

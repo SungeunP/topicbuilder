@@ -1,0 +1,75 @@
+/***** topic-info *****/
+.topic-info {
+    width: 100%;
+    margin-top: 10px;
+}
+.topic-info ul li label,
+.topic-info ul li span {
+    background-color: #b8b8b8;
+    color: #fefefe;
+    text-align: center;
+    line-height: 32px;
+    padding-top: 4px;
+}
+.topic-info ul li input {
+    padding: 6px 4px 1px 4px;
+}
+
+.topic-name, .topic-status {
+    display: inline-block;
+}
+.topic-name {
+    width: 60%;
+}
+.topic-status {
+    width: 39%;
+}
+.topic-name label {
+    width: 20%;
+}
+.topic-name input {
+    width: 80%;
+}
+.topic-status {
+    white-space: nowrap;
+}
+.topic-status span {
+    display: inline-block;
+    width: 40%;
+    font-weight: bold;
+}
+.topic-status select {
+    display: inline-block;
+    padding: 4px 10px 8px 10px;
+    width: 41.5%;
+}
+.topic-desc label {
+    width: 12%;
+}
+.topic-desc input {
+    width: 80.9%;
+}
+
+@media screen and (max-width: 1550px) {
+    .topic-info ul li {
+        margin-top: 5px;
+    }
+    .topic-name, .topic-status {
+        width: 100%;
+    }
+    .topic-name label,
+    .topic-desc label {
+        margin: 0;
+        width: 23%;
+    }
+    .topic-status span {
+        width: 30%;
+    }
+    .topic-name input,
+    .topic-desc input {
+        width: 77%;
+    }
+    .topic-status select {
+        width: 69%;
+    }
+}

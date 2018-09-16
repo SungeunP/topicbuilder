@@ -1,0 +1,123 @@
+.response-contents .response h2 {
+    padding: 1px 0px 2px 0px;
+    margin: 0px;
+    color: #fefefe;
+    background-color: #222;
+    font-size: 0.8em;
+    text-align: right;
+}
+.response-contents .response h2 span {
+    float: left;
+    margin: 3px 0px 0px 6px;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+.response-contents .response h2 select {
+    color: #222;
+    padding: 0px 10px 4px 10px;
+}
+.response-contents .response h2 button {
+    width: 20px;
+    height: 20px;
+    border: 0px;
+    border-radius: 1em;
+    margin: 0px 4px 0px 4px;
+    background-color: transparent;
+    text-align: center;
+    transition: 0.3s;
+}
+.response-contents .response h2 button.delete-obj-btn,
+.response-contents .response h2 button.delete-response-btn {
+    margin: 0px 10px 0px 8px;
+}
+.response-contents .response h2 button.delete-obj-btn i,
+.response-contents .response h2 button.delete-response-btn i{
+    margin: 1px 0px 0px 0px;
+}
+.response-contents .response h2 button.down-btn i {
+    margin: 1px 0px 0px 1px;
+}
+.response-contents .response h2 button:hover {
+    color: #222;
+    background-color: #fefefe;
+}
+
+.response-contents .response p {
+    width: 98%;
+    margin: auto;
+}
+.response-contents .response p span {
+    display: inline-block;
+    width: 19%;
+    margin: 8px 0px;
+    font-size: 0.9em;
+    font-weight: bold;
+}
+.response-contents .response p input[type="text"] {
+    width: 80%;
+    padding: 4px 4px 0px 6px;
+    font-size: 0.8em;
+}
+
+.response-contents .response .obj-group {
+    border: 2px solid #b8b8b8;
+}
+.response-contents .response .obj-group h2 {
+    background-color: #b8b8b8;
+}
+
+.add-obj-btn {
+    position: relative;
+    margin-left: 10px;
+}
+.add-obj-btn button {
+    margin: 10px 0px;
+    padding: 4px 8px 2px 7px;
+    border: 0px;
+    background-color: #6e8b3d;
+    color: #fefefe;
+    font-size: 0.9em;
+    transition: 0.3s;
+}
+.add-obj-btn button:hover {
+    filter: brightness(1.2);
+}
+.add-obj-btn ul {
+    display: none;
+    width: 300px;
+    height: 32px;
+    overflow: hidden;
+    position: absolute;
+    top: 10px;
+    left: 140px;
+    padding: 3px 10px;
+    background-color: #f3f9e8;
+    border: 1px solid #98c054;
+}
+.add-obj-btn ul li {
+    display: inline-block;
+    width: 65px;
+    transition: 0.5s;
+    cursor: pointer;
+    padding: 2px 4px;
+    color: #222;
+    font-size: 0.9em;
+    text-align: center;
+    transition: 0.3s;
+}
+.add-obj-btn ul li:hover {
+    color: #00A2E8;
+}
+
+@media screen and (max-width: 1550px) {    
+    /***** topic-contents *****/
+    .topic-contents {
+        width: 100%;
+    }
+    .topic-contents ul li > span {
+        width: 30%;
+    }
+    .topic-contents ul li input[type="text"] {
+        width: 65%;
+    }
+}
