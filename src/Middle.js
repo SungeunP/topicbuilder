@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import TopicBar from './TopicBar';
 import TopicInfo from './TopicInfo';
-import TopicMain from './TopicMain';
+import QuestionMain from './QuestionMain';
 import './Middle.css';
 class Middle extends Component {
   // After DOM loaded
@@ -13,7 +13,7 @@ class Middle extends Component {
       <div className="col-sm-7 question-contents">
         <TopicBar clickAddTrigger={this.props.clickAddTrigger}/>
         <TopicInfo />
-        <TopicMain />
+        <QuestionMain Current_Question={this.props.Current_Question} />
       </div>
     );
   }

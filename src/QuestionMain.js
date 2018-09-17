@@ -1,12 +1,28 @@
 import React, { Component } from 'react';
-import './TopicMain.css';
-class TopicMain extends Component {
+import './QuestionMain.css';
 
-  constructor(){
-      super();
+import { Map } from 'immutable';
+
+class QuestionMain  extends Component {
+
+  constructor(props){
+    super(props);
+    this.state = {
+      data : Map({
+        Current_Question : Map({
+          data : Map({})
+        })
+      })
+    }
   }
 
+  // state.update 로직 추가해야함
+
   render() {
+    console.log("QuestionMain render! received data is ",this.props.Current_Question);
+    const { data } = this.props.Current_Question;
+
+    console.log("name data is ", data.name);
     return (
         <div className="topic-contents">
             <div className="previous-list hidden">
@@ -16,7 +32,7 @@ class TopicMain extends Component {
                 </ul>
             </div>
             <ul>
-                <li><span>질문</span><input className="question" type="text" placeholder="질문을 입력해주십시오" /></li>
+                <li><span>질문</span><input className="question" type="text" value={this.props.Current_Question.data.get("name  ")} placeholder="질문을 입력해주십시오" /></li>
                 <li className="previous"><span>이전 질문</span><input type="text" placeholder="이전 질문을 선택해주십시오" readOnly /><button className="delete-previous-btn"><i className="fas fa-times"></i></button></li>
                 <li className="question-status">
                     <span>접근 허용 여부<button className="help-btn"><i className="fas fa-question-circle"></i></button></span>
@@ -60,4 +76,4 @@ class TopicMain extends Component {
   }
 }
 
-export default TopicMain;
+export default QuestionMain;

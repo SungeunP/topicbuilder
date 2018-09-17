@@ -18,7 +18,10 @@ class App extends Component {
   state = {
     data : Map({
       QuestionList : List([]),
-      ArrayObjList : List([])
+      ArrayObjList : List([]),
+      Current_Question : { // state re-render 를 위해
+        data : Map({})
+      }
     })
   }
 
@@ -33,6 +36,13 @@ class App extends Component {
 
   _QuestionDataReceive = (Question) => {
     console.log("Question data : ",Question);
+    const { data } = this.state;
+
+    // state.data.QuestionList += Question
+    this.setState({
+      data: data.update('Current_Question', Question => Question)
+    })
+    console.log(this.state.data.get("Current_Question"));
   }
 
   render() {
@@ -52,7 +62,7 @@ class App extends Component {
                       ArrayObjList={this.state.data.get("ArrayObjList")} 
                       ref={this.SideListRef}
                       QuestionDataReceive={this._QuestionDataReceive}/>
-            <Middle clickAddTrigger={this.handleCreate} />
+            <Middle clickAddTrigger={this.handleCreate} Current_Question={this.state.data.get("Current_Question")} />
             <Preview />
           </div>
         </div>
