@@ -56,6 +56,12 @@ class QuestionList extends Component {
   // Before this.onBlurr
   // 네이티브한 onBlur가 있었나봄 중복되어서 이상하게 동작했었음
   onBlurr = (e) => {
+    this._onBlurrEvent();
+  }
+
+  // Before this.onBlurr
+  // method를 나눠서 범용성 있게 쓰도록 하였음 ( 임시 )
+  _onBlurrEvent = () => {
     if (document.getElementById("Question_input").value == "") {
       this.setInputState(false);
     } else {
@@ -68,10 +74,14 @@ class QuestionList extends Component {
     }
   }
 
-  _onClickQuestion = (name, data) => {
+  // QuestionList click event
+  // parameter : Question Object
+  _onClickQuestion = (Question) => {
     console.log("onClickQuestion ccc");
-    console.log(name);
-    console.log(data);
+    console.log(Question.data.get("name"));
+    console.log(Question.data.get("data"));
+
+    this.props.QuestionReciver(Question);
   }
 
   render() {
@@ -94,7 +104,7 @@ class QuestionList extends Component {
         <ul id="Question_List" className="list-contents">
           <li className="search"><input type="text" placeholder="검색어를 입력해 주십시오" /><input type="submit" value="검색" className="btn-custom btn-custom-black" /></li>
           {
-            this.state.isInputMode === true && (<QL_QuestionInput onBlurr={this.onBlurr} />)
+            this.state.isInputMode === true && (<QL_QuestionInput onBlurr={this.onBlurr} onEnter={this._onBlurrEvent} />)
           }
           {
             list.size === 0 ? (<li id="nonQuestionData">
