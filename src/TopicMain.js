@@ -17,7 +17,7 @@ class TopicMain extends Component {
             </div>
             <ul>
                 <li><span>질문</span><input className="question" type="text" placeholder="질문을 입력해주십시오" /></li>
-                <li className="previous"><span>이전 질문</span><input type="text" placeholder="이전 질문을 선택해주십시오" readonly /><button className="delete-previous-btn"><i className="fas fa-times"></i></button></li>
+                <li className="previous"><span>이전 질문</span><input type="text" placeholder="이전 질문을 선택해주십시오" readOnly /><button className="delete-previous-btn"><i className="fas fa-times"></i></button></li>
                 <li className="question-status">
                     <span>접근 허용 여부<button className="help-btn"><i className="fas fa-question-circle"></i></button></span>
                     <p className="hidden">접근 허용 여부 도움말</p>
@@ -44,13 +44,13 @@ class TopicMain extends Component {
                     <p><span>조건문</span><input type="text" placeholder="조건문을 입력해주십시오" /></p>
 
                     {/* 오브젝트 추가 버튼 */}
-                    <div class='add-obj-btn'>
+                    <div className='add-obj-btn'>
                         <button className="btn-custom btn-custom-success" type='button'>오브젝트 추가</button>
                         <ul>
-                            <li class='add-obj-text'>텍스트</li>
-                            <li class='add-obj-img'>이미지</li>
-                            <li class='add-obj-button'>버튼</li>
-                            <li class='add-obj-group'>그룹</li>
+                            <li className='add-obj-text'>텍스트</li>
+                            <li className='add-obj-img'>이미지</li>
+                            <li className='add-obj-button'>버튼</li>
+                            <li className='add-obj-group'>그룹</li>
                         </ul>
                     </div>
                 </div>

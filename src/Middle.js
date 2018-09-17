@@ -10,7 +10,7 @@ class Middle extends Component {
   }
   render() {
     return (
-      <div class="col-sm-7 question-contents">
+      <div className="col-sm-7 question-contents">
         <TopicBar clickAddTrigger={this.props.clickAddTrigger}/>
         <TopicInfo />
         <TopicMain />

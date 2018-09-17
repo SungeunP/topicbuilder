@@ -2,8 +2,9 @@ import React, { Component, Fragment } from 'react';
 import SideList from './SideList';
 import Middle from './Middle';
 import Preview from './Preview';
-import temp_sidebar from './temp_sidebar';
-import temp_header from './temp_header';
+import Temp_sidebar from './temp_sidebar';
+import Temp_header from './temp_header';
+import { Map , List } from 'immutable';
 import './App.css';
 
 
@@ -15,40 +16,37 @@ class App extends Component {
   }
 
   state = {
-    QuestionList : [
-
-    ]
+    data : Map({
+      QuestionList : List([]),
+      ArrayObjList : List([])
+    })
   }
 
   handleCreate = (data) => {
-    if (document.getElementById("Question_input") === null ) {
-      console.log("Question_input On");
-      this.SideListRef.current.QuestionListRef.current.setInputState(true);
+    if (document.getElementById("Question_input") === null ) { // Input
+      this.SideListRef.current.QuestionListRef.current.setInputState(true); // state to on
       document.getElementById("Question_input").focus();
-    } else {
-      console.log("Question_input Off");
-      this.SideListRef.current.QuestionListRef.current.setInputState(false);
+    } else { // remove Input
+      this.SideListRef.current.QuestionListRef.current.setInputState(false); // state to off
     }
-    
-    /* const { QuestionList } = this.state;
-    this.setState({
-      QuestionList: QuestionList.concat({ id: this.id++, ...data })
-    }) */
   }
 
   render() {
+    console.log("App rendered");
     return (
       <Fragment>
-        <div class="container-fluid">
-        <div class="row">
-          <temp_header />
+        <div className="container-fluid">
+        <div className="row">
+          <Temp_header />
         </div>
-        <div class="row">
-        <temp_sidebar />
+        <div className="row">
+        <Temp_sidebar />
         </div>
         <div className="contents col-sm-12">
           <div className="row" > {/* style="position: relative; z-index: 100;" */}
-            <SideList QuestionList={this.state.QuestionList} ref={this.SideListRef}/>
+            <SideList QuestionList={this.state.data.get("QuestionList")} 
+                      ArrayObjList={this.state.data.get("ArrayObjList")} 
+                      ref={this.SideListRef}/>
             <Middle clickAddTrigger={this.handleCreate} />
             <Preview />
           </div>

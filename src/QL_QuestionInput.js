@@ -22,9 +22,11 @@ class QL_QuestionInput extends Component {
  }
 
   _onInputChange = (value) => {
+    console.log(value);
     this.setState({
       name : value
     });
+    console.log(this.state.name);
   }
 
   render() {
