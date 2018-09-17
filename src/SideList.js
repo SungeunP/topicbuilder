@@ -27,8 +27,8 @@ class SideList extends Component {
     })
   }
 
-  _addArrayObj = (data) => {
-
+  _receiveQuestionData = (Question) => {
+    this.props.QuestionDataReceive(Question);
   }
 
   _clickAddArray = (Array_obj) => {
@@ -40,7 +40,8 @@ class SideList extends Component {
     return (
       <div className="col-sm-2">
         <QuestionList QuestionList={this.state.data.get("QuestionList")} 
-                      ref={this.QuestionListRef}/>
+                      ref={this.QuestionListRef}
+                      QuestionReciver={this._receiveQuestionData}/>
         <ArrayList clickAddArray={this._clickAddArray} 
                     ArrayObjList={this.state.data.get("ArrayObjList")}/>
       </div>

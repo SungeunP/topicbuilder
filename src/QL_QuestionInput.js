@@ -16,8 +16,8 @@ class QL_QuestionInput extends Component {
 
   // QuestionInput Enter event
   keyPress(e){
-    if(e.key == 'Enter'){
-       
+    if(e.key == 'Enter'){ // 임시로 Core메소드를 나누어서 실제 동작하는 함수는 묶어두었음
+      this.props.onEnter();
     }
  }
 

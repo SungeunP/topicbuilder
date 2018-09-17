@@ -22,13 +22,17 @@ class App extends Component {
     })
   }
 
-  handleCreate = (data) => {
+  handleCreate = () => {
     if (document.getElementById("Question_input") === null ) { // Input
       this.SideListRef.current.QuestionListRef.current.setInputState(true); // state to on
       document.getElementById("Question_input").focus();
     } else { // remove Input
       this.SideListRef.current.QuestionListRef.current.setInputState(false); // state to off
     }
+  }
+
+  _QuestionDataReceive = (Question) => {
+    console.log("Question data : ",Question);
   }
 
   render() {
@@ -46,7 +50,8 @@ class App extends Component {
           <div className="row" > {/* style="position: relative; z-index: 100;" */}
             <SideList QuestionList={this.state.data.get("QuestionList")} 
                       ArrayObjList={this.state.data.get("ArrayObjList")} 
-                      ref={this.SideListRef}/>
+                      ref={this.SideListRef}
+                      QuestionDataReceive={this._QuestionDataReceive}/>
             <Middle clickAddTrigger={this.handleCreate} />
             <Preview />
           </div>
