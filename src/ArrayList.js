@@ -46,14 +46,14 @@ class ArrayList extends Component {
 
 
   render() {
-    console.log("ArrayList rendered");
+    //console.log("ArrayList rendered");
     
     const {data} = this.state;
     const ArrayObjList = data.get("ArrayObjList");
-    console.log(ArrayObjList);
+    //console.log(ArrayObjList);
     
     const list = ArrayObjList.map((data,index) => {
-      console.log(data);
+      //console.log(data);
       return (
         <Array_component
           name={data.name} 
@@ -61,7 +61,7 @@ class ArrayList extends Component {
           value={data.value} />
       );
     });
-    console.log(list);
+    //console.log(list);
     return (
       <div className="array-list">
         <p className="list-header">

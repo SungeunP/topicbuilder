@@ -13,15 +13,16 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.SideListRef = React.createRef();
+    this.MiddleRef = React.createRef();
   }
 
   state = {
     data : Map({
       QuestionList : List([]),
       ArrayObjList : List([]),
-      Current_Question : { // state re-render 를 위해
+      Current_Question : Map({ // state re-render 를 위해
         data : Map({})
-      }
+      })
     })
   }
 
@@ -36,17 +37,34 @@ class App extends Component {
 
   _QuestionDataReceive = (Question) => {
     console.log("Question data : ",Question);
+    console.log("Question.name : ", Question.get("name"));
+    console.log("Question.data : ", Question.get("data"));
     const { data } = this.state;
 
-    // state.data.QuestionList += Question
-    this.setState({
-      data: data.update('Current_Question', Question => Question)
+    let name = Question.get("name");
+    let qData = Question.get("data");
+    let qID = Question.get("id");
+    let obj_a = Map({
+      name: name,
+      data: qData,
+      id: qID
     })
-    console.log(this.state.data.get("Current_Question"));
+
+    // current.asdfasdf
+    this.MiddleRef.current.QuestionMainRef.current._SetQuestion(obj_a);
+
+    // state.data.QuestionList += Question
+    /* this.setState({
+      data: data.update('Current_Question', (name,data) => {
+        return Question;
+      })
+    })
+    console.log(this.state.data.get("Current_Question")); */
   }
 
   render() {
     console.log("App rendered");
+    const data_outer = this.state.data.get("Current_Question");
     return (
       <Fragment>
         <div className="container-fluid">
@@ -62,7 +80,9 @@ class App extends Component {
                       ArrayObjList={this.state.data.get("ArrayObjList")} 
                       ref={this.SideListRef}
                       QuestionDataReceive={this._QuestionDataReceive}/>
-            <Middle clickAddTrigger={this.handleCreate} Current_Question={this.state.data.get("Current_Question")} />
+            <Middle clickAddTrigger={this.handleCreate} 
+                    Current_Question={data_outer.get("data")} 
+                    ref={this.MiddleRef}/>
             <Preview />
           </div>
         </div>

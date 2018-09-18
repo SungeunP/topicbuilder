@@ -12,6 +12,14 @@ class QuestionList extends Component {
     super(props);
 
     this.setInputState = this.setInputState.bind(this);
+    // STATE
+    this.state = {
+      data: Map({
+        QuestionList: List([]),
+        SelectedQuestion: Map({}),
+        isInputMode: false
+      })
+    }
   }
 
   // DEFAULTPROPS
@@ -23,19 +31,14 @@ class QuestionList extends Component {
     })
   }
 
-  // STATE
-  state = {
-    data: Map({
-      QuestionList: List([]),
-      isInputMode: false
-    })
-  }
+  
 
   // 현재 Input 상태를 설정
+  // 전체 항목을 setState했는데 왜 데이터가 안 사라지는지
   setInputState = (tf) => {
     this.setState({
       isInputMode: tf
-    });
+    })
   }
 
   // STATE에 QUESTION을 추가
@@ -47,8 +50,8 @@ class QuestionList extends Component {
     this.setState({
       data: data.update('QuestionList', QuestionList => QuestionList.push({
         id : data.get("QuestionList").size,
-        qName: qName,
-        questionData: qData
+        name: qName,
+        data: qData
       }))
     })
   }
@@ -78,8 +81,18 @@ class QuestionList extends Component {
   // parameter : Question Object
   _onClickQuestion = (Question) => {
     console.log("onClickQuestion ccc");
-    console.log(Question.data.get("name"));
-    console.log(Question.data.get("data"));
+    console.log(Question.get("name"));
+    console.log(Question.get("data"));
+    const { data } = this.state;
+    const selectedQuestion = data.get("SelectedQuestion");
+    if (selectedQuestion.id == Question.get("id")) {
+      // selection release
+      return;
+    } 
+
+    this.setState({
+      data: data.set('SelectedQuestion', Question)
+    })
 
     this.props.QuestionReciver(Question);
   }
@@ -91,7 +104,7 @@ class QuestionList extends Component {
     // QuestionList를 기반으로 컴포넌트 생성
     const list = QuestionList.map(
       (question, index) =>
-        (<QL_Question id={question.id} qName={question.qName} questionData={question.questionData} onClickQuestion={this._onClickQuestion} />)
+        (<QL_Question id={question.id} qName={question.name} questionData={question.data} onClickQuestion={this._onClickQuestion} />)
     );
     return (
       <div className="question-list">

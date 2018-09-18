@@ -23,12 +23,13 @@ class QL_Question extends Component {
   _QuestionClicked = () => {
     let name = this.props.qName;
     let data = this.props.questionData;
-    let Question = { // immutable의 Map 객체가 넘어가질 않아서 key값 그냥 정의 ( 임시 )
-      data : Map({
-        name : name,
-        data : data
-      })
-    };
+    let qID = this.props.id;
+    let Question = Map({
+      name: name,
+      data: data,
+      id: qID
+    });
+    console.log(Question);
     this.props.onClickQuestion(Question);
   }
 
@@ -39,7 +40,7 @@ class QL_Question extends Component {
     } = this.props;
     console.log(this._QuestionClicked);
     return (
-      <li id={id}>
+      <li id={id} >
         <a onClick={this._QuestionClicked}>{qName}
           <button class="array-config-btn">
             <i class="fas fa-cog"></i>
