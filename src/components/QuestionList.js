@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import './QuestionList.css';
 import { Map, List } from 'immutable';
 
-import {SampleProvider} from './sampleStore';
+import {SampleProvider} from '../contexts/sample';
 
 import QL_Question from './QL_Question';
 import QL_QuestionInput from './QL_QuestionInput';

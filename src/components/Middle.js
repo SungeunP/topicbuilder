@@ -3,7 +3,7 @@ import TopicBar from './TopicBar';
 import TopicInfo from './TopicInfo';
 import QuestionMain from './QuestionMain';
 
-import {SampleConsumer} from './sampleStore';
+import { SampleConsumer } from '../contexts/sample';
 
 import './Middle.css';
 
@@ -26,7 +26,17 @@ class Middle extends Component {
       <div className="col-sm-7 question-contents">
         <TopicBar clickAddTrigger={this.props.clickAddTrigger}/>
         <TopicInfo />
-        <QuestionMain ref={this.QuestionMainRef} /> { /* Current_Question={this.props.Current_Question.get("data")} */}
+        <SampleConsumer>
+          {
+            ({state}) => {
+              if (state.value.question != null) {
+                (<QuestionMain />)
+              }
+            }
+          }
+          
+        </SampleConsumer>
+        
       </div>
     );
   }

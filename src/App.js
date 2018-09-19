@@ -1,14 +1,14 @@
 import React, { Component, Fragment } from 'react';
-import SideList from './SideList';
-import Middle from './Middle';
-import Preview from './Preview';
-import Temp_sidebar from './temp_sidebar';
-import Temp_header from './temp_header';
+import SideList from './components/SideList';
+import Middle from './components/Middle';
+import Preview from './components/Preview';
+import Temp_sidebar from './components/temp_sidebar';
+import Temp_header from './components/temp_header';
 
-import {SampleProvider} from './sampleStore';
+import { SampleProvider } from './contexts/sample';
 
 import { Map, List } from 'immutable';
-import './App.css';
+import './app.css';
 
 
 class App extends Component {
@@ -86,7 +86,6 @@ class App extends Component {
             </div>
           </div>
       </SampleProvider>
-
     );
   }
 }
