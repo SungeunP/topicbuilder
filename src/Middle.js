@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import TopicBar from './TopicBar';
 import TopicInfo from './TopicInfo';
 import QuestionMain from './QuestionMain';
+
+import {SampleConsumer} from './sampleStore';
+
 import './Middle.css';
 
 import { Map , List } from 'immutable';
@@ -15,7 +18,7 @@ class Middle extends Component {
 
   // After DOM loaded
   componentDidMount(){
-    console.log(this.props.clickAddTrigger);
+    
   }
 
   render() {

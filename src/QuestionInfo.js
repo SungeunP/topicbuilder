@@ -9,12 +9,9 @@ class QuestionInfo extends Component {
     super(props);
     this.state = {
       data: Map({
-        QuestionInfo: Map({
-          QuestionName: "",
-          Previous: "",
-          AccessModifier: null
-        })
-        
+        QuestionName: "",
+        Previous: "",
+        AccessModifier: null
       })
     }
   }
@@ -24,7 +21,7 @@ class QuestionInfo extends Component {
     console.log("QuestInfo Question data! ", QuestionInfo);
 
     const { data } = this.state;
-    
+
     let questionName = QuestionInfo.get("name");
     let previous = QuestionInfo.get("previous");
     let AccessModifier = QuestionInfo.get("accessModifier");
@@ -41,6 +38,7 @@ class QuestionInfo extends Component {
 
   }
 
+
   // Question changed event //
   _onQuestionInputChange = (value) => {
     console.log(value);
@@ -48,11 +46,10 @@ class QuestionInfo extends Component {
 
     // Question
     this.setState({
-      data : data.set('QuestionName', value)
+      data: data.set('QuestionName', value)
     });
 
   }
-
   // Previous changed event //
   _onPreviousInputChange = (value) => {
     console.log(value);
@@ -60,27 +57,28 @@ class QuestionInfo extends Component {
 
     // Question
     this.setState({
-      data : data.set('Previous', value)
+      data: data.set('Previous', value)
     });
-    
-  }
 
+  }
   // Access Modifier changed event
   _onAccessInputChange = (value) => {
     console.log(value);
     const { data } = this.state;
 
+
     // Question
     this.setState({
-      data : data.set('AccessModifier', value)
+      data: data.set('AccessModifier', value)
     });
-    
+
   }
 
   // state.update 로직 추가해야함
 
   render() {
-    const curr_question = this.state.data.get("QuestionInfo");
+    console.log("QUESTION INFO RENDERED");
+    const {data} = this.state;
     return (
       <Fragment>
         <div className="previous-list hidden">
@@ -91,15 +89,15 @@ class QuestionInfo extends Component {
         </div>
         <ul>
           <li><span>질문</span>
-            <input className="question" type="text" 
-                  value={curr_question.get("QuestionName")} 
-                  onChange={e => this._onQuestionInputChange(e.target.value)} 
-                  placeholder="질문을 입력해주십시오" />
+            <input className="question" type="text"
+              value={data.get("QuestionName")}
+              onChange={e => this._onQuestionInputChange(e.target.value)}
+              placeholder="질문을 입력해주십시오" />
           </li>
           <li className="previous"><span>이전 질문</span>
-            <input type="text" placeholder="이전 질문을 선택해주십시오" 
-                  onChange={e => this._onQuestionInputChange(e.target.value)} 
-                  readOnly />
+            <input type="text" placeholder="이전 질문을 선택해주십시오"
+              onChange={e => this._onQuestionInputChange(e.target.value)}
+              readOnly />
             <button className="delete-previous-btn">
               <i className="fas fa-times"></i>
             </button>

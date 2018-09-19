@@ -32,11 +32,10 @@ class SideList extends Component {
   }
 
   _clickAddArray = (Array_obj) => {
-    console.log("Array add button clicked");
+
   }
 
   render() {
-    console.log("SideList rendered");
     return (
       <div className="col-sm-2">
         <QuestionList QuestionList={this.state.data.get("QuestionList")} 

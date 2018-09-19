@@ -9,10 +9,7 @@ class QL_QuestionInput extends Component {
     super(props);
     this.state = {
       data : Map({
-          name : "",
-          previous : "",
-          accessModifier : false,
-          data : Map({})
+          name : ""
       })
       
     }

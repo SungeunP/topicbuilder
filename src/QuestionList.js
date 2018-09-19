@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import './QuestionList.css';
 import { Map, List } from 'immutable';
 
+import {SampleProvider} from './sampleStore';
 
 import QL_Question from './QL_Question';
 import QL_QuestionInput from './QL_QuestionInput';
@@ -15,9 +16,17 @@ class QuestionList extends Component {
     // STATE
     this.state = {
       data: Map({
-        QuestionList: List([]),
-        SelectedQuestion: Map({}),
-        isInputMode: false
+        questionList: List([
+          /*Map({
+             title: "<겉 타이틀:str>",
+            trigger: "<질문 내용 (실제 트리거):str>",
+            previous: "<이전 질문:str>",
+            accessModifier: false,
+            data: null,
+            id: null
+          })*/
+        ]),
+        selectedQuestion: null
       })
     }
   }
@@ -31,7 +40,7 @@ class QuestionList extends Component {
     })
   }
 
-  
+
 
   // 현재 Input 상태를 설정
   // 전체 항목을 setState했는데 왜 데이터가 안 사라지는지
@@ -42,17 +51,19 @@ class QuestionList extends Component {
   }
 
   // STATE에 QUESTION을 추가
-  addQuestion = (qName, qData) => {
-    let id = 0;
+  addQuestion = () => {
     const { data } = this.state;
 
     // state.data.QuestionList += Question
     this.setState({
-      data: data.update('QuestionList', QuestionList => QuestionList.push({
-        id : data.get("QuestionList").size,
-        name: qName,
-        data: qData
-      }))
+      data: data.update('questionList', questionList => questionList.push(Map({
+        title: "질문 " + data.get("questionList").size,
+        trigger: "",
+        previous: "",
+        accessModifier: false,
+        data: null,
+        id : data.get("questionList").size
+    })))
     })
   }
 
@@ -69,9 +80,8 @@ class QuestionList extends Component {
       this.setInputState(false);
     } else {
 
-      // immutable로 수정
-      this.addQuestion(document.getElementById("Question_input").value, {});
-      //immutable로 수정
+      // Add Tmp Question
+      this.addQuestion();
 
       this.setInputState(false);
     }
@@ -81,57 +91,64 @@ class QuestionList extends Component {
   // parameter : Question Object
   _onClickQuestion = (Question) => {
     console.log("onClickQuestion ccc");
-    console.log(Question.get("name"));
+    console.log(Question.get("title"));
     console.log(Question.get("data"));
     const { data } = this.state;
-    const selectedQuestion = data.get("SelectedQuestion");
-    if (selectedQuestion.id == Question.get("id")) {
-      // selection release
-      return;
-    } 
-
+    const selectedQuestion = data.get("selectedQuestion");
+    if (selectedQuestion != null) { // 초기 null 처리
+      if (selectedQuestion.id == Question.get("id")) {
+        // selection release
+        return;
+      }
+    }
+    
+    // SET state
     this.setState({
-      data: data.set('SelectedQuestion', Question)
+      data: data.set('selectedQuestion', Question)
     })
-
-    this.props.QuestionReciver(Question);
   }
 
   render() {
     console.log("QuestionList rendered");
     const { data } = this.state;
-    const QuestionList = data.get("QuestionList");
+    const QuestionList = data.get("questionList");
+    console.log(data.get("selectedQuestion"));
     // QuestionList를 기반으로 컴포넌트 생성
     const list = QuestionList.map(
       (question, index) =>
-        (<QL_Question id={question.id} qName={question.name} questionData={question.data} onClickQuestion={this._onClickQuestion} />)
+        (<QL_Question question={question} onClickQuestion={this._onClickQuestion} />)
     );
+
     return (
-      <div className="question-list">
-        <p className="list-header">
-          <strong>질문 목록</strong>
-          <span><button type="button" className="searchvar-btn"><i className="fas fa-search"></i></button></span>
-          <span><button type="button" className="list-btn"><i className="fas fa-caret-down"></i></button></span>
-          <span className="hidden previous-close-btn"><button type="button"><i className="fas fa-caret-down"></i></button></span>
-        </p>
-        <ul id="Question_List" className="list-contents">
-          <li className="search"><input type="text" placeholder="검색어를 입력해 주십시오" /><input type="submit" value="검색" className="btn-custom btn-custom-black" /></li>
-          {
-            this.state.isInputMode === true && (<QL_QuestionInput onBlurr={this.onBlurr} onEnter={this._onBlurrEvent} />)
-          }
-          {
-            list.size === 0 ? (<li id="nonQuestionData">
-              <a href="">질문이 없습니다.
-                                <button className="array-config-btn">
-                  <i className="fas fa-cog"></i>
-                </button>
-              </a>
-            </li>)
-              :
-              (list)
-          }
-        </ul>
-      </div>
+      <Fragment>
+        <SampleProvider value={this.state.data.get("selectedQuestion")}></SampleProvider>
+        <div className="question-list">
+          <p className="list-header">
+            <strong>질문 목록</strong>
+            <span><button type="button" className="searchvar-btn"><i className="fas fa-search"></i></button></span>
+            <span><button type="button" className="list-btn"><i className="fas fa-caret-down"></i></button></span>
+            <span className="hidden previous-close-btn"><button type="button"><i className="fas fa-caret-down"></i></button></span>
+          </p>
+          <ul id="Question_List" className="list-contents">
+            <li className="search"><input type="text" placeholder="검색어를 입력해 주십시오" /><input type="submit" value="검색" className="btn-custom btn-custom-black" /></li>
+            {
+              this.state.isInputMode === true && (<QL_QuestionInput onBlurr={this.onBlurr} onEnter={this._onBlurrEvent} />)
+            }
+            {
+              list.size === 0 ? (<li id="nonQuestionData">
+                <a href="">질문이 없습니다.
+                                  <button className="array-config-btn">
+                    <i className="fas fa-cog"></i>
+                  </button>
+                </a>
+              </li>)
+                :
+                (list)
+            }
+          </ul>
+        </div>
+      </Fragment>
+
     )
   }
 }

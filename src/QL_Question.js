@@ -7,43 +7,32 @@ class QL_Question extends Component {
 
   constructor(props) {
     super(props);
-    /*data : Map({
-      name : "",
-      questionData : Map({}),
-      id: 0
-    }) */
-  }
-
-  static defaultProps = {
-    qName: "질문",
-    questionData: {},
-    id: 0
+    this.state = {
+      data : this.props.question
+    }
+    console.log(this.state.data);
   }
 
   _QuestionClicked = () => {
-    let name = this.props.qName;
-    let data = this.props.questionData;
-    let qID = this.props.id;
-    let Question = Map({
-      name: name,
-      data: data,
-      id: qID
-    });
-    console.log(Question);
-    this.props.onClickQuestion(Question);
+    this.props.onClickQuestion(this.state.data);
   }
 
-  render() {
 
-    const {
-      qName, questionData, id
-    } = this.props;
-    console.log(this._QuestionClicked);
+  /*
+  title: "질문 " + data.get("questionList").size,
+        trigger: "",
+        previous: "",
+        accessModifier: false,
+        data: null,
+        id : data.get("questionList").size
+  */
+  render() {
+    const {data} = this.state;
     return (
-      <li id={id} >
-        <a onClick={this._QuestionClicked}>{qName}
-          <button class="array-config-btn">
-            <i class="fas fa-cog"></i>
+      <li id={this.state.data.get("id")} >
+        <a onClick={this._QuestionClicked}>{this.state.data.get("title")}
+          <button className="array-config-btn">
+            <i className="fas fa-cog"></i>
           </button>
         </a>
       </li>
