@@ -13,7 +13,6 @@ class Middle extends Component {
 
   constructor(props) {
     super(props);
-    this.QuestionMainRef = React.createRef();
   }
 
   // After DOM loaded
@@ -22,9 +21,10 @@ class Middle extends Component {
   }
 
   render() {
+    console.log("MIDDLE RENDERED");
     return (
       <div className="col-sm-7 question-contents">
-        <TopicBar clickAddTrigger={this.props.clickAddTrigger}/>
+        <TopicBar />
         <TopicInfo />
         <SampleConsumer>
           {

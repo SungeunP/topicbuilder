@@ -3,7 +3,7 @@ import './QuestionList.css';
 import { Map, List } from 'immutable';
 
 import { SampleConsumer } from '../contexts/sample';
-import { questionListContextProvider, questionListContextConsumer } from '../contexts/questionListContext';
+import { QuestionListContextProvider, QuestionListContextConsumer } from '../contexts/QuestionListContext';
 
 import QL_Question from './QL_Question';
 import QL_QuestionInput from './QL_QuestionInput';
@@ -13,40 +13,29 @@ class QuestionList extends Component {
   constructor(props) {
     super(props);
 
-    this.setInputState = this.setInputState.bind(this);
-
-    // STATE에 QUESTION을 추가
-    // 안쓰임안쓰임안쓰임안쓰임안쓰임안쓰임안쓰임
-    this.addQuestion = () => {
-      const { data } = this.state;
-
-      // state.data.QuestionList += Question
-      this.setState({
-        data: data.update('questionList', questionList => questionList.push(Map({
-          title: "질문 " + data.get("questionList").size,
-          trigger: "",
-          previous: "",
-          accessModifier: false,
-          data: null,
-          id: data.get("questionList").size
-        })))
-      })
-    }
-
     // STATE
     this.state = {
       data: Map({
         questionList: this.props.questionList,
-        selectedQuestion: Map({
+        selectedQuestion: null /* Map({
           title: "<겉 타이틀:str>",
           trigger: "<질문 내용 (실제 트리거):str>",
           previous: "<이전 질문:str>",
           accessModifier: false,
           data: null,
           id: null
-        })
+        }) */
       })
     }
+  }
+
+  // props -> state 업데이트
+
+  componentDidMount() {
+    const {data} = this.state;
+    this.setState({
+      data: data.set('questionList', this.props.questionList)
+    })
   }
 
 
@@ -79,12 +68,13 @@ class QuestionList extends Component {
   render() {
     console.log("QuestionList rendered");
     const { data } = this.state;
-    const QuestionList = data.get("questionList");
+
+    const QuestionList = this.props.questionList;
     console.log(data.get("selectedQuestion"));
     // QuestionList를 기반으로 컴포넌트 생성
     const list = QuestionList.map(
       (question, index) =>
-        (<QL_Question question={question} onClickQuestion={this._onClickQuestion} />)
+        (<QL_Question question={question} setValue={this.props.setValue} />)
     );
     console.log(list);
 
@@ -118,19 +108,19 @@ class QuestionList extends Component {
 }
 
 const QuestionListContainer = () => (
-  <questionListContextConsumer>
+  <QuestionListContextConsumer>
     {
       listContext => (
         <SampleConsumer>
           {
             sampleContext => (
-              <div>adfdafdsdfsfdsfds</div>
+              <QuestionList questionList={listContext.state.value.get("questionList")} setValue={sampleContext.actions.setValue} />
             )
           }
         </SampleConsumer>
       )
     }
-  </questionListContextConsumer>
+  </QuestionListContextConsumer>
 )
 
 

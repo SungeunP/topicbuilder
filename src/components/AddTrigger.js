@@ -1,20 +1,28 @@
 import React, { Component , Fragment } from 'react';
 
+import { useSample } from '../contexts/QuestionListContext';
+
 class AddTrigger extends Component {
 
-  // After DOM loaded
+  state = {
+    actions : {}
+  }
+
   componentDidMount(){
-    // App.js function binding AddTrigger button
-    document.getElementById("TopicBar_AddTrigger").addEventListener(
-      "click",
-      this.props.clickAddTrigger);
-      
+    this.setState({
+      actions : this.props.value.addQuestion
+    })
+  }
+
+  _addQuestion = (e) => {
+    this.props.addQuestion();
   }
 
   render() {
     return (
-        <button id="TopicBar_AddTrigger" className="btn-custom btn-custom-black add-question-btn">대화 추가</button>
+        <button onClick={this._addQuestion} id="TopicBar_AddTrigger" className="btn-custom btn-custom-black add-question-btn">대화 추가</button>
     );
   }
 }
- export default AddTrigger;
+
+export default useSample(AddTrigger);

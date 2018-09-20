@@ -35,6 +35,7 @@ class SideList extends Component {
   }
 
   render() {
+    console.log("SIDELIST RENDERED");
     return (
       <div className="col-sm-2">
         <QuestionList QuestionList={this.state.data.get("QuestionList")}

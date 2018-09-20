@@ -6,18 +6,16 @@ import Temp_sidebar from './components/temp_sidebar';
 import Temp_header from './components/temp_header';
 
 import { SampleProvider } from './contexts/sample';
-import { questionListContextProvider } from './contexts/questionListContext';
+import { QuestionListContextProvider } from './contexts/QuestionListContext';
 
 import { Map, List } from 'immutable';
-import './app.css';
+import './App.css';
 
 
 class App extends Component {
 
   constructor(props) {
     super(props);
-    this.SideListRef = React.createRef();
-    this.MiddleRef = React.createRef();
   }
 
   state = {
@@ -28,12 +26,6 @@ class App extends Component {
         data: Map({})
       })
     })
-  }
-
-  // 대화 추가 버튼 클릭 Event
-  handleCreate = () => {
-    console.log(this.SideListRef);
-    this.SideListRef.current.QuestionListRef.current.addQuestion;
   }
 
   _QuestionDataReceive = (Question) => {
@@ -74,7 +66,7 @@ class App extends Component {
     console.log("App rendered");
     const data_outer = this.state.data.get("Current_Question");
     return (
-      <AppProvider contexts={[SampleProvider, questionListContextProvider]} >
+      <AppProvider contexts={[SampleProvider, QuestionListContextProvider]} >
         <div className="container-fluid">
           <div className="row">
             <Temp_header />

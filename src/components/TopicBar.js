@@ -11,11 +11,10 @@ class TopicBar extends Component {
 
   render() {
 
-    console.log(document.getElementById("TopicBar_AddTrigger"));
 
     return (
       <div className="btn-line">
-          <AddTrigger clickAddTrigger={this.props.clickAddTrigger}/>
+          <AddTrigger />
           <button className="btn-custom btn-custom-success">임시 저장</button>
           <button className="btn-custom btn-custom-default">임시 저장 불러오기</button>
           <button className="btn-custom btn-custom-success">생성</button>

@@ -3,18 +3,20 @@ import './QL_Question.css';
 
 import { Map } from 'immutable';
 
+import { SampleProvider, SampleConsumer } from '../contexts/sample';
+
 class QL_Question extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      data : this.props.question
+      data: this.props.question
     }
     console.log(this.state.data);
   }
 
   _QuestionClicked = () => {
-    this.props.onClickQuestion(this.state.data);
+    this.props.setValue(this.state.data);
   }
 
 
@@ -27,7 +29,7 @@ class QL_Question extends Component {
         id : data.get("questionList").size
   */
   render() {
-    const {data} = this.state;
+    const { data } = this.state;
     return (
       <li id={this.state.data.get("id")} >
         <a onClick={this._QuestionClicked}>{this.state.data.get("title")}
@@ -39,6 +41,26 @@ class QL_Question extends Component {
     )
   }
 }
+/*
+const QL_QuestionContainer = () => (
+  <SampleConsumer>
+    {
+      sample => (
+        <QL_Question setValue={sample.value.actions.setValue} question={this.props.question} />
+      )
+    }
+  </SampleConsumer>
+)
+*/
 
+const QL_QuestionContainer = () => (
+  <SampleConsumer>
+    {
+      sample => (
+        <QL_Question question={this.props.question} setValue={this.props.setValue} />
+      )
+    }
+  </SampleConsumer>
+)
 
 export default QL_Question;
