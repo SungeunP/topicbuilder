@@ -9,7 +9,6 @@ class SideList extends Component {
 
   constructor(props) {
     super(props);
-    this.QuestionListRef = React.createRef();
 
   }
 
@@ -38,8 +37,7 @@ class SideList extends Component {
   render() {
     return (
       <div className="col-sm-2">
-        <QuestionList QuestionList={this.state.data.get("QuestionList")} 
-                      ref={this.QuestionListRef}
+        <QuestionList QuestionList={this.state.data.get("QuestionList")}
                       QuestionReciver={this._receiveQuestionData}/>
         <ArrayList clickAddArray={this._clickAddArray} 
                     ArrayObjList={this.state.data.get("ArrayObjList")}/>

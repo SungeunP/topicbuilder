@@ -6,7 +6,7 @@ const { Provider , Consumer: SampleConsumer } = Context;
 
 class SampleProvider extends Component {
   state = {
-    value : '기본값 입니다'
+    value : "sample"
   }
 
   // actions 객체는 사용자 정의 객체임

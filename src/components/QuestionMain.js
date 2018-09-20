@@ -33,7 +33,7 @@ class QuestionMain extends Component {
   }
 
   static defaultProps = {
-    question : null
+    question: null
   }
 
   render() {
@@ -44,7 +44,7 @@ class QuestionMain extends Component {
 
     // sampleConsumer에서 받아온 question 객체
     const { question } = this.props.value;
-    
+
     let name = null;
 
     if (data != null) {
@@ -66,26 +66,22 @@ class QuestionMain extends Component {
 
     return (
       <Fragment>
-        <div style={containerStyle} className="topic-contents">
-            <QuestionInfo trigger={question.trigger}
-                          previous={question.previous}
-                          accessModifier={question.accessModifier} />
-          <QuestionData />
-        </div>
+        <SampleConsumer>
+          {
+            (sample) => (
+              <div style={containerStyle} className="topic-contents">
+                <QuestionInfo trigger={sample.state.value.trigger}
+                  previous={sample.state.value.previous}
+                  accessModifier={sample.state.value.accessModifier} />
+                <QuestionData />
+              </div>
+            )
+          }
+        </SampleConsumer>
+
       </Fragment>
     );
   }
 }
 
-const QuestionMainContainer = () => {
-  <SampleConsumer>
-    {
-      ({ state , actions }) => (
-        <QuestionMain value={state.value}
-                      setQuestion={actions.setQuestion} />
-      )
-    }
-  </SampleConsumer>
-}
-
-export default QuestionMainContainer;
+export default QuestionMain;

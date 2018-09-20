@@ -29,7 +29,7 @@ class Middle extends Component {
         <SampleConsumer>
           {
             ({state}) => {
-              if (state.value.question != null) {
+              if (state.value != null) {
                 (<QuestionMain />)
               }
             }

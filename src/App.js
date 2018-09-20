@@ -6,6 +6,7 @@ import Temp_sidebar from './components/temp_sidebar';
 import Temp_header from './components/temp_header';
 
 import { SampleProvider } from './contexts/sample';
+import { questionListContextProvider } from './contexts/questionListContext';
 
 import { Map, List } from 'immutable';
 import './app.css';
@@ -31,9 +32,8 @@ class App extends Component {
 
   // 대화 추가 버튼 클릭 Event
   handleCreate = () => {
-    if (document.getElementById("Question_input") === null) { // Input
-      this.SideListRef.current.QuestionListRef.current.addQuestion();
-    }
+    console.log(this.SideListRef);
+    this.SideListRef.current.QuestionListRef.current.addQuestion;
   }
 
   _QuestionDataReceive = (Question) => {
@@ -60,32 +60,42 @@ class App extends Component {
     console.log(this.state.data.get("Current_Question")); */
   }
 
+
   render() {
+
+    // 현재 이 앱의 Provider들
+    const AppProvider = ({ contexts, children }) => contexts.reduce(
+      (prev, context) => React.createElement(context, {
+        children: prev
+      }),
+      children
+    );
+
     console.log("App rendered");
     const data_outer = this.state.data.get("Current_Question");
     return (
-      <SampleProvider>
-          <div className="container-fluid">
-            <div className="row">
-              <Temp_header />
-            </div>
-            <div className="row">
-              <Temp_sidebar />
-            </div>
-            <div className="contents col-sm-12">
-              <div className="row" > {/* style="position: relative; z-index: 100;" */}
-                <SideList QuestionList={this.state.data.get("QuestionList")}
-                  ArrayObjList={this.state.data.get("ArrayObjList")}
-                  ref={this.SideListRef}
-                  QuestionDataReceive={this._QuestionDataReceive} />
-                <Middle clickAddTrigger={this.handleCreate}
-                  Current_Question={data_outer.get("data")}
-                  ref={this.MiddleRef} />
-                <Preview />
-              </div>
+      <AppProvider contexts={[SampleProvider, questionListContextProvider]} >
+        <div className="container-fluid">
+          <div className="row">
+            <Temp_header />
+          </div>
+          <div className="row">
+            <Temp_sidebar />
+          </div>
+          <div className="contents col-sm-12">
+            <div className="row" > {/* style="position: relative; z-index: 100;" */}
+              <SideList QuestionList={this.state.data.get("QuestionList")}
+                ArrayObjList={this.state.data.get("ArrayObjList")}
+                ref={this.SideListRef}
+                QuestionDataReceive={this._QuestionDataReceive} />
+              <Middle clickAddTrigger={this.handleCreate}
+                Current_Question={data_outer.get("data")}
+                ref={this.MiddleRef} />
+              <Preview />
             </div>
           </div>
-      </SampleProvider>
+        </div>
+      </AppProvider>
     );
   }
 }
