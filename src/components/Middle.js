@@ -3,11 +3,7 @@ import TopicBar from './TopicBar';
 import TopicInfo from './TopicInfo';
 import QuestionMain from './QuestionMain';
 
-import { SampleConsumer } from '../contexts/sample';
-
 import './Middle.css';
-
-import { Map , List } from 'immutable';
 
 class Middle extends Component {
 
@@ -15,10 +11,6 @@ class Middle extends Component {
     super(props);
   }
 
-  // After DOM loaded
-  componentDidMount(){
-    
-  }
 
   render() {
     console.log("MIDDLE RENDERED");
@@ -26,17 +18,7 @@ class Middle extends Component {
       <div className="col-sm-7 question-contents">
         <TopicBar />
         <TopicInfo />
-        <SampleConsumer>
-          {
-            ({state}) => {
-              if (state.value != null) {
-                (<QuestionMain />)
-              }
-            }
-          }
-          
-        </SampleConsumer>
-        
+        <QuestionMain />
       </div>
     );
   }

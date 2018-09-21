@@ -20,38 +20,9 @@ class App extends Component {
 
   state = {
     data: Map({
-      QuestionList: List([]),
-      ArrayObjList: List([]),
-      Current_Question: Map({ // state re-render 를 위해
-        data: Map({})
-      })
+      ArrayObjList: List([])
     })
   }
-
-  _QuestionDataReceive = (Question) => {
-    const { data } = this.state;
-
-    let name = Question.get("name");
-    let qData = Question.get("data");
-    let qID = Question.get("id");
-    let obj_a = Map({
-      name: name,
-      data: qData,
-      id: qID
-    })
-
-    // current.asdfasdf
-    this.MiddleRef.current.QuestionMainRef.current._SetQuestion(obj_a);
-
-    // state.data.QuestionList += Question
-    /* this.setState({
-      data: data.update('Current_Question', (name,data) => {
-        return Question;
-      })
-    })
-    console.log(this.state.data.get("Current_Question")); */
-  }
-
 
   render() {
 
@@ -64,7 +35,7 @@ class App extends Component {
     );
 
     console.log("App rendered");
-    const data_outer = this.state.data.get("Current_Question");
+
     return (
       <AppProvider contexts={[SampleProvider, QuestionListContextProvider]} >
         <div className="container-fluid">
@@ -80,10 +51,7 @@ class App extends Component {
                 ArrayObjList={this.state.data.get("ArrayObjList")}
                 ref={this.SideListRef}
                 QuestionDataReceive={this._QuestionDataReceive} />
-              <Middle clickAddTrigger={this.handleCreate}
-                Current_Question={data_outer.get("data")}
-                ref={this.MiddleRef} />
-              <Preview />
+              <Middle />
             </div>
           </div>
         </div>

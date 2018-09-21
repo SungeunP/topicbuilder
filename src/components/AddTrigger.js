@@ -10,17 +10,12 @@ class AddTrigger extends Component {
 
   componentDidMount(){
     this.setState({
-      actions : this.props.value.addQuestion
+      actions : this.props.addQuestion
     })
   }
-
-  _addQuestion = (e) => {
-    this.props.addQuestion();
-  }
-
   render() {
     return (
-        <button onClick={this._addQuestion} id="TopicBar_AddTrigger" className="btn-custom btn-custom-black add-question-btn">대화 추가</button>
+        <button onClick={this.state.actions} id="TopicBar_AddTrigger" className="btn-custom btn-custom-black add-question-btn">대화 추가</button>
     );
   }
 }

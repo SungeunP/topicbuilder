@@ -29,8 +29,7 @@ class QuestionList extends Component {
     }
   }
 
-  // props -> state 업데이트
-
+  // 초기 값 설정
   componentDidMount() {
     const {data} = this.state;
     this.setState({
@@ -61,8 +60,6 @@ class QuestionList extends Component {
 
     // state에 올린 선택된 질문을 store.setValue
     this.props.actions.setValue(this.state.data.get("selectedQuestion"));
-
-    console.log(this.state);
   }
 
   render() {
@@ -71,12 +68,12 @@ class QuestionList extends Component {
 
     const QuestionList = this.props.questionList;
     console.log(data.get("selectedQuestion"));
+
     // QuestionList를 기반으로 컴포넌트 생성
     const list = QuestionList.map(
       (question, index) =>
         (<QL_Question question={question} setValue={this.props.setValue} />)
     );
-    console.log(list);
 
     return (
       <Fragment>
@@ -114,7 +111,8 @@ const QuestionListContainer = () => (
         <SampleConsumer>
           {
             sampleContext => (
-              <QuestionList questionList={listContext.state.value.get("questionList")} setValue={sampleContext.actions.setValue} />
+              <QuestionList questionList={listContext.state.value.get("questionList")} 
+                            setValue={sampleContext.actions.setValue} />
             )
           }
         </SampleConsumer>

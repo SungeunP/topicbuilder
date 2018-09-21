@@ -9,16 +9,37 @@ class QL_Question extends Component {
 
   constructor(props) {
     super(props);
+    console.log(this.props.setValue);
     this.state = {
-      data: this.props.question
+      data: Map({
+        title: "",
+        trigger: "",
+        previous: "",
+        accessModifier: false,
+        data: null,
+        id: null
+      }),
+      actions : Map({
+        setValue : this.props.setValue
+      })
     }
-    console.log(this.state.data);
+    console.log(this.state);
   }
 
   _QuestionClicked = () => {
-    this.props.setValue(this.state.data);
+    console.log(this.state.actions);
+    this.state.actions.get("setValue")(this.state.data);
+    console.log("setValue! ");
   }
 
+  componentDidMount(){
+    this.setState({
+      data : this.props.question,
+      actions : Map({
+        setValue: this.props.setValue
+      })
+    })
+  }
 
   /*
   title: "질문 " + data.get("questionList").size,
@@ -29,7 +50,6 @@ class QL_Question extends Component {
         id : data.get("questionList").size
   */
   render() {
-    const { data } = this.state;
     return (
       <li id={this.state.data.get("id")} >
         <a onClick={this._QuestionClicked}>{this.state.data.get("title")}

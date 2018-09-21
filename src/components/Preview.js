@@ -5,7 +5,7 @@ class Preview extends Component {
     return (
       <div className="col-sm-3 preview-contents">
         <button className="btn-custom btn-custom-success preview-btn">미리보기 닫기 <i className="fas fa-caret-down"></i></button>
-        <iframe src="" frameborder="0" >
+        <iframe src="" frameBorder="0" >
           
         </iframe>
       </div>

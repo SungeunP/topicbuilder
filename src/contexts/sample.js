@@ -7,9 +7,16 @@ const Context = createContext(); // Context를 생성
 const { Provider , Consumer: SampleConsumer } = Context;
 
 class SampleProvider extends Component {
-  state = Map({
-    value : "sample"
-  })
+  state = {
+    value : Map({
+      title: "",
+      trigger: "",
+      previous: "",
+      accessModifier: false,
+      data: null,
+      id: null
+    })
+  }
 
   // actions 객체는 사용자 정의 객체임
   // 변화를 일으키는 함수들을 전달해줄 때, 함수 하나하나 전달하지 않고
@@ -17,6 +24,15 @@ class SampleProvider extends Component {
   actions = {
     setValue: (value) => {
       this.setState({value});
+    },
+    setInfo: (trigger,previous,accessModifier) => {
+      console.log("sampleStore.setInfo!");
+      const value = this.state.value
+      this.setState({
+        value : value.set("trigger", trigger),
+        previous : value.set("previous", previous),
+        accessModifier : value.set("accessModifier", accessModifier) 
+      })
     }
   }
 
@@ -42,6 +58,7 @@ function useSample(WrappedComponent) {
             <WrappedComponent
               value={state.value}
               setValue={actions.setValue}
+              setInfo={actions.setInfo}
             />
           )
         }

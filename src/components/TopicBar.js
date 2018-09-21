@@ -10,8 +10,7 @@ class TopicBar extends Component {
   }
 
   render() {
-
-
+    console.log("Topic Bar RENDERED!");
     return (
       <div className="btn-line">
           <AddTrigger />
