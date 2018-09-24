@@ -11,7 +11,6 @@ import { QuestionListContextProvider } from './contexts/QuestionListContext';
 import { Map, List } from 'immutable';
 import './App.css';
 
-
 class App extends Component {
 
   constructor(props) {

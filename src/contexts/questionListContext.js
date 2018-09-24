@@ -6,6 +6,10 @@ const { Provider , Consumer: QuestionListContextConsumer } = Context;
 
 class QuestionListContextProvider extends Component {
   
+  constructor(props){
+    super(props);
+  }
+
   state = {
     value : Map({
       questionList : List([])
@@ -16,6 +20,7 @@ class QuestionListContextProvider extends Component {
   // 변화를 일으키는 함수들을 전달해줄 때, 함수 하나하나 전달하지 않고
   // 객체 하나로 전달하기 위함
   actions = {
+    // 질문 추가
     addQuestion: () => {
       const {value} = this.state;
       this.setState({
@@ -29,18 +34,39 @@ class QuestionListContextProvider extends Component {
           }))
         )
       })
+    },
+    // 질문 수정
+    editQuestion: (index, question) => {
+      this._editQuestionInList(index,question);
     }
   }
 
   render(){
     const { state , actions } = this;
     const value = { state , actions};
-    console.log(this.state.value);
     return (
       <Provider value={value}>
         {this.props.children}
       </Provider>
     )
+  }
+
+  // QuestionList 수정
+  _editQuestionInList = (index,question_param) => {
+    console.log("_editQuestionInList");
+    console.log("_editQuestionInList");
+    console.log("_editQuestionInList");
+    console.log("_editQuestionInList");
+    console.log("_edit  "+index);
+    
+    const {value} = this.state;
+    const questionList_c = value.get("questionList");
+
+    value.update("questionList", questionList => questionList.map(
+      question => question.get("id") === index 
+      ? {...question ,...question_param} : question
+    ))
+    console.log(this.state.value.get("questionList"));
   }
 }
 

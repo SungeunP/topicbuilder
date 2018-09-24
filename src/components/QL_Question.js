@@ -3,13 +3,12 @@ import './QL_Question.css';
 
 import { Map } from 'immutable';
 
-import { SampleProvider, SampleConsumer } from '../contexts/sample';
+import { SampleConsumer } from '../contexts/sample';
 
 class QL_Question extends Component {
 
   constructor(props) {
     super(props);
-    console.log(this.props.setValue);
     this.state = {
       data: Map({
         title: "",
@@ -23,13 +22,10 @@ class QL_Question extends Component {
         setValue : this.props.setValue
       })
     }
-    console.log(this.state);
   }
 
   _QuestionClicked = () => {
-    console.log(this.state.actions);
     this.state.actions.get("setValue")(this.state.data);
-    console.log("setValue! ");
   }
 
   componentDidMount(){

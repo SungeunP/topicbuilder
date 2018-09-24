@@ -19,7 +19,6 @@ class QuestionMain extends Component {
     this.setState({
       data: this.props.value
     })
-    console.log("QUESTION MAIN componentDidMount", this.state);
   }
 
   render() {

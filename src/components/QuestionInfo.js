@@ -5,6 +5,8 @@ import { Map, List } from 'immutable';
 
 import { SampleConsumer } from '../contexts/sample';
 
+import { QuestionListContextConsumer } from '../contexts/QuestionListContext';
+
 class QuestionInfo extends Component {
 
   constructor(props) {
@@ -13,7 +15,8 @@ class QuestionInfo extends Component {
       data: Map({
         trigger: this.props.value.get("trigger"),
         previous: this.props.value.get("previous"),
-        accessModifier: this.props.value.get("accessModifier")
+        accessModifier: this.props.value.get("accessModifier"),
+        id: this.props.value.get("id")
       })
     }
   }
@@ -32,16 +35,22 @@ class QuestionInfo extends Component {
     let questionName = QuestionInfo.get("name");
     let previous = QuestionInfo.get("previous");
     let AccessModifier = QuestionInfo.get("accessModifier");
+    let id = QuestionInfo.get("id");
 
     let obj = Map({
       QuestionName: questionName,
       Previous: previous,
-      AccessModifier: AccessModifier
+      AccessModifier: AccessModifier,
+      id: id
     });
-    console.log(obj);
     this.setState({
       data: data.set('trigger', obj)
     })
+  }
+
+  // edit Question
+  _editQuestion = (index, question) => {
+    this.props.editQuestion(index, question);
   }
 
   // Current Info update to sampleStore
@@ -53,15 +62,15 @@ class QuestionInfo extends Component {
 
   // Question changed event //
   _onQuestionInputChange = (value) => {
-    console.log(value);
     const { data } = this.state;
+
+    this._editQuestion(this.state.data.get("id"),this.state.data);
 
     this._currentInfoUpdate2Store(value, data.get("previous"), data.get("accessModifier"));
   }
 
   // Previous changed event //
   _onPreviousInputChange = (value) => {
-    console.log(value);
     const { data } = this.state;
 
     this._currentInfoUpdate2Store(data.get("trigger"), value, data.get("accessModifier"));
@@ -69,7 +78,6 @@ class QuestionInfo extends Component {
 
   // Access Modifier changed event
   _onAccessInputChange = (value) => {
-    console.log(value);
     const { data } = this.state;
 
     this._currentInfoUpdate2Store(data.get("trigger"), data.get("previous"), value);
@@ -97,7 +105,7 @@ class QuestionInfo extends Component {
           </li>
 
           <li className="previous"><span>이전 질문</span>
-            <input type="text" 
+            <input type="text"
               placeholder="이전 질문을 선택해주십시오"
               value={this.props.value.get("previous")}
               onChange={e => this._onQuestionInputChange(e.target.value)}
@@ -123,13 +131,22 @@ class QuestionInfo extends Component {
 }
 
 const QuestionInfoContainer = () => (
-  <SampleConsumer>
+  <QuestionListContextConsumer>
     {
-      ({ state, actions }) => (
-        <QuestionInfo setInfo={actions.setInfo} value={state.value} />
+      ({actions}) => (
+        <SampleConsumer>
+          {
+            ({ state, actions_question }) => (
+              <QuestionInfo setInfo={actions_question.setInfo} 
+                            value={state.value}
+                            editQuestion={actions.editQuestion} />
+            )
+          }
+        </SampleConsumer>
       )
     }
-  </SampleConsumer>
-)
-
+  </QuestionListContextConsumer>
+    
+  )
+  
 export default QuestionInfoContainer;

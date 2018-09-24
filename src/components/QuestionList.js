@@ -37,31 +37,6 @@ class QuestionList extends Component {
     })
   }
 
-
-  // QuestionList click event
-  // parameter : Question Object
-  _onClickQuestion = (Question) => {
-    console.log("onClickQuestion ccc");
-    console.log(Question.get("title"));
-    console.log(Question.get("data"));
-    const { data } = this.state;
-    const selectedQuestion = data.get("selectedQuestion");
-    if (selectedQuestion != null) { // 초기 null 처리
-      if (selectedQuestion.id == Question.get("id")) {
-        // selection release
-        return;
-      }
-    }
-
-    // SET state
-    this.setState({
-      data: data.set('selectedQuestion', Question)
-    })
-
-    // state에 올린 선택된 질문을 store.setValue
-    this.props.actions.setValue(this.state.data.get("selectedQuestion"));
-  }
-
   render() {
     console.log("QuestionList rendered");
     const { data } = this.state;
@@ -110,9 +85,9 @@ const QuestionListContainer = () => (
       listContext => (
         <SampleConsumer>
           {
-            sampleContext => (
+            ({actions_question}) => (
               <QuestionList questionList={listContext.state.value.get("questionList")} 
-                            setValue={sampleContext.actions.setValue} />
+                            setValue={actions_question.setValue} />
             )
           }
         </SampleConsumer>
